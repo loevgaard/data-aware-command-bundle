@@ -74,8 +74,8 @@ trait DataAwareCommandTrait
     protected function getDataFile() {
         if(is_null($this->dataFile)) {
             $dataDir = realpath($this->getContainer()->getParameter('loevgaard_data_aware_command.data_dir'));
-            if(!is_dir($dataDir) || !is_writable($dataDir)) {
-                throw new \RuntimeException('Data directory: '.$dataDir.' either does not exist or is not writable');
+            if($dataDir === false || !is_dir($dataDir) || !is_writable($dataDir)) {
+                throw new \RuntimeException('Data directory: '.$this->getContainer()->getParameter('loevgaard_data_aware_command.data_dir').' either does not exist or is not writable');
             }
             $this->dataFile = $dataDir.'/'.$this->getCanonicalizedCommandName().'.data';
         }
