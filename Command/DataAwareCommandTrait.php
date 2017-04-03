@@ -38,7 +38,7 @@ trait DataAwareCommandTrait
         $data = $this->getCommandData();
 
         $data[$key] = $val;
-        file_put_contents($this->dataFile, serialize($data));
+        file_put_contents($this->getDataFile(), serialize($data));
     }
 
     /**
@@ -46,11 +46,12 @@ trait DataAwareCommandTrait
      * @return array
      */
     public function getCommandData($param = null) {
-        if(!file_exists($this->dataFile) || !is_readable($this->dataFile)) {
+        $dataFile = $this->getDataFile();
+        if(!file_exists($dataFile) || !is_readable($dataFile)) {
             return [];
         }
 
-        $data = unserialize(file_get_contents($this->dataFile));
+        $data = unserialize(file_get_contents($dataFile));
 
         if($data === false) {
             return [];
