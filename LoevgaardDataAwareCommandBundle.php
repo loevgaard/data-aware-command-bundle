@@ -1,6 +1,6 @@
 <?php
 
-namespace Loevgaard\DandomainFoundationBundle;
+namespace Loevgaard\DataAwareCommandBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
