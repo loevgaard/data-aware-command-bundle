@@ -7,6 +7,11 @@
             "email": "joachim@loevgaard.dk"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Loevgaard\\DataAwareCommandBundle\\": ""
+        }
+    },
     "require": {
         "php": ">=5.5.9",
         "symfony/framework-bundle": "^2.7 || ^3.0",
