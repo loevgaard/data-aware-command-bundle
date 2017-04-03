@@ -1,0 +1,16 @@
+{
+    "name": "loevgaard/data-aware-command-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joachim Loevgaard",
+            "email": "joachim@loevgaard.dk"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "symfony/framework-bundle": "^2.7 || ^3.0",
+        "symfony/filesystem": "^2.7 || ^3.0",
+        "symfony/console": "^3.0"
+    }
+}
