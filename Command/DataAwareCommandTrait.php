@@ -3,6 +3,10 @@ namespace Loevgaard\DataAwareCommandBundle\Command;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * @method string getName() - The command name
+ * @method ContainerInterface getContainer()
+ */
 trait DataAwareCommandTrait
 {
     protected $dataFile;
@@ -70,7 +74,7 @@ trait DataAwareCommandTrait
     protected function getDataFile() {
         if(is_null($this->dataFile)) {
             $dataDir = realpath($this->getContainer()->getParameter('loevgaard_data_aware_command.data_dir'));
-            if(!is_dir($dataDir) || is_writable($dataDir)) {
+            if(!is_dir($dataDir) || !is_writable($dataDir)) {
                 throw new \RuntimeException('Data directory: '.$dataDir.' either does not exist or is not writable');
             }
             $this->dataFile = $dataDir.'/'.$this->getCanonicalizedCommandName().'.data';
@@ -87,18 +91,4 @@ trait DataAwareCommandTrait
     protected function getCanonicalizedCommandName() {
         return preg_replace('/[_]+/', '_', preg_replace('/[^0-9a-zA-Z\-_]+/', '_', $this->getName()));
     }
-
-    /**
-     * Returns the command name.
-     *
-     * @return string The command name
-     */
-    abstract public function getName();
-
-    /**
-     * @return ContainerInterface
-     *
-     * @throws \LogicException
-     */
-    abstract protected function getContainer();
 }
